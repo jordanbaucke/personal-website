@@ -1,28 +1,21 @@
 // Navigation configuration - single source of truth
 // Order is consistent across all pages
 const navItems = [
-  { href: 'index.html', icon: 'fas fa-home', text: 'Home', showOnHome: false },
-  { href: 'podcasts.html', icon: 'fas fa-podcast', text: 'Podcasts', showOnHome: true },
-  { href: 'library.html', icon: 'fas fa-book', text: 'Library', showOnHome: true },
-  { href: 'https://www.linkedin.com/in/jordanbaucke', icon: 'fab fa-linkedin', text: 'LinkedIn', showOnHome: true },
-  { href: 'https://github.com/jordanbaucke', icon: 'fab fa-github', text: 'GitHub', showOnHome: true },
-  { href: 'mailto:jordan.baucke@gmail.com', icon: 'fas fa-envelope', text: 'Email', showOnHome: true },
-  { href: 'https://t.me/jordanbaucke', icon: 'fab fa-telegram', text: 'Telegram', showOnHome: true }
+  { href: 'index.html', icon: 'fas fa-home', text: 'Home' },
+  { href: 'podcasts.html', icon: 'fas fa-podcast', text: 'Podcasts' },
+  { href: 'library.html', icon: 'fas fa-book', text: 'Library' },
+  { href: 'https://www.linkedin.com/in/jordanbaucke', icon: 'fab fa-linkedin', text: 'LinkedIn' },
+  { href: 'https://github.com/jordanbaucke', icon: 'fab fa-github', text: 'GitHub' },
+  { href: 'mailto:jordan.baucke@gmail.com', icon: 'fas fa-envelope', text: 'Email' },
+  { href: 'https://t.me/jordanbaucke', icon: 'fab fa-telegram', text: 'Telegram' }
 ];
 
 function loadNavigation() {
   const nav = document.querySelector('nav');
   if (!nav) return;
 
-  // Determine if we're on the home page
-  const path = window.location.pathname;
-  const isHomePage = path.endsWith('index.html') || 
-                    path.endsWith('/') ||
-                    (path.split('/').pop() === '' && path.split('/').length <= 2);
-
-  // Filter items based on page type and build navigation
+  // Build navigation - same on all pages
   nav.innerHTML = navItems
-    .filter(item => isHomePage ? item.showOnHome : true)
     .map(item => `<a href="${item.href}"><i class="${item.icon}"></i> ${item.text}</a>`)
     .join('');
 }
